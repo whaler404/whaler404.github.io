@@ -31,6 +31,7 @@ github_username:  whaler404
 
 # Build settings
 theme: minima
+markdown: kramdown
 plugins:
   - jekyll-feed
 
