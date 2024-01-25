@@ -1,27 +1,44 @@
 <head>
     <meta charset="utf-8">
+    <!-- 指示浏览器使用最新的渲染引擎 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- google 网站验证的元标签，用于验证网站所有权 -->
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <!-- 控制页面在不同设备上的响应式布局 -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 提供了网站的描述，这在搜索引擎结果中显示 -->
     <meta name="description" content="{{ site.description }}">
+    <!-- 搜索引擎你的网站与哪些关键词相关 -->
     <meta name="keywords"  content="{{ site.keyword }}">
+    <!-- 浏览器标签或地址栏的颜色 -->
     <meta name="theme-color" content="{{ site.chrome-tab-theme-color }}">
     
-    <!-- <title>{% if page.title %}{{ page.title }} - {{ site.SEOTitle }}{% else %}{{ site.SEOTitle }}{% endif %}</title> -->
+    <title>{% if page.title %}{{ page.title }} - {{ site.SEOTitle }}{% else %}{{ site.SEOTitle }}{% endif %}</title>
 
-    <!-- Web App Manifest -->
+    <!-- Web 应用程序清单 -->
     <link rel="manifest" href="{{ site.baseurl }}/pwa/manifest.json">
 
-    <!-- Favicon -->
-    <!-- <link rel="shortcut icon" href="{{ site.baseurl }}/img/favicon.ico"> -->
+    <!-- 网站图标 -->
+    <link rel="shortcut icon" href="{{ site.baseurl }}/img/favicon.ico">
 
-    <!-- Safari Webpage Icon    by-BY -->
-    <!-- <link rel="apple-touch-icon" href="{{ site.baseurl }}/img/apple-touch-icon.png"> -->
+    <!-- Safari 网页图标 -->
+    <link rel="apple-touch-icon" href="{{ site.baseurl }}/img/apple-touch-icon.png">
     
-    <!-- Canonical URL -->
-    <!-- <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}"> -->
+    <!-- 规范网址 -->
+    <!-- 指定当前页面的“canonical” URL，即搜索引擎应该视为首选版本的网页地址。
+    site.url + site.baseurl -->
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
     <!-- Bootstrap Core CSS -->
+    <!-- Bootstrap 是一个流行的前端框架，用于快速设计和定制响应式移动优先的网站。包括：
+    网格系统：用于创建页面布局。系统是响应式的，可以根据不同的屏幕尺寸自动调整布局。
+    排版样式：用于格式化文本、标题、列表和其他文本元素。
+    按钮和链接：多种风格和大小的按钮，包括边框、背景色和悬停效果。
+    导航组件：如导航栏、面包屑、分页条、标签和选项卡
+    响应式工具：用于在不同的屏幕尺寸下显示或隐藏页面元素
+    JavaScript 插件、实用工具类 -->
+    <!-- 模板语言的过滤器。它将 site.baseurl （站点的基础 URL）添加到文件路径前面。
+    这对于确保在不同的部署环境中（例如，站点可能部署在子目录中）保持正确的资源路径非常有用 -->
     <link rel="stylesheet" href="{{ "/css/bootstrap.min.css" | prepend: site.baseurl }}">
 
     <!-- Custom CSS -->
@@ -53,4 +70,5 @@
     <!-- ga & ba script hoook -->
     <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
     <script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script></script>
 </head>
