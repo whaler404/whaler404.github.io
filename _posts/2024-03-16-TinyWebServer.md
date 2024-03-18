@@ -26,12 +26,47 @@ tags:
 
 # linux网络编程核心技术
 
+## Linux 网络编程核心
 - Linux 下网络编程核心的包括系统编程和网络 IO 两个部分：
     - 进程间通信方式： 信号量、管道、共享内存、socket 等
     - 多线程编程：互斥锁、条件变量、读写锁、线程池等
     - 五大 IO 模型：同步、异步、阻塞、非阻塞、信号驱动
     - 高性能 IO 两种模式：Reactor 和 Proactor（ 但是 Linux 下由于缺少异步 IO 支持，基本没有 ProactorIO 
     - 复用机制：epoll、select、poll（破解 C10K 问题的利器）
+
+## Linux C++ 中的系统函数：
+- 文件和I/O操作：
+    - open()、close()：打开和关闭文件。
+    - read()、write()：从文件中读取数据和向文件写入数据。
+    - lseek()：设置文件偏移量。
+    - fcntl()：文件控制。
+    - ioctl()：设备控制。
+- 进程和线程管理：
+    - fork()、exec()、wait()、waitpid()：创建新进程、执行新程序、等待子进程结束。
+    - exit()、_exit()：正常和非正常退出进程。
+    - getpid()、getppid()：获取进程ID和父进程ID。
+    - pthread_create()、pthread_join()、pthread_exit()：创建线程、等待线程结束、线程退出。
+- 内存管理：
+    - malloc()、calloc()、realloc()、free()：动态内存分配和释放。
+    - mmap()、munmap()：文件映射到内存。
+    - brk()、sbrk()：调整进程的数据段和堆。
+- 进程间通信（IPC）：
+    - pipe()、mkfifo()：创建管道。
+    - msgget()、msgsnd()、msgrcv()：消息队列。
+    - semget()、semop()、semctl()：信号量。
+    - shmget()、shmat()、shmdt()、shmctl()：共享内存。
+- 网络通信：
+    - socket()、bind()、listen()、accept()：创建套接字、绑定、监听和接受连接。
+    - connect()、send()、recv()：连接到远程套接字、发送和接收数据。
+    - getaddrinfo()、gethostbyname()、gethostbyaddr()：获取地址信息和主机信息。
+- 时间和日期：
+    - time()、clock_gettime()、gettimeofday()：获取当前时间。
+    - ctime()、strftime()：时间格式化。
+- 信号处理：
+    - signal()、sigaction()、kill()：信号处理。
+- 系统调用和系统信息：
+    - syscall()：调用内核系统调用。
+    - getuid()、getgid()、getpid()、getppid()：获取用户ID、组ID、进程ID、父进程ID等。
 
 - 多线程编程
     - 工具库：linux下使用pthread，c++11封装了跨平台的thread库
@@ -43,8 +78,17 @@ tags:
 - [c++经验之谈一：RAII原理介绍](https://zhuanlan.zhihu.com/p/34660259)
 - [Linux下的I/O复用与epoll详解](https://www.cnblogs.com/lojunren/p/3856290.html)
 - [回调函数（callback）是什么](https://www.zhihu.com/question/19801131)
+
 - pthread库
-    - [POSIX Threads Programming](https://hpc-tutorials.llnl.gov/posix/)
     - [POSIX thread (pthread) libraries (CMU)](https://www.cs.cmu.edu/afs/cs/academic/class/15492-f07/www/pthreads.html)
     - [yolinux: your linux tutorials](http://www.yolinux.com/TUTORIALS/)
     - [pthread的各种同步机制](https://casatwy.com/pthreadde-ge-chong-tong-bu-ji-zhi.html)
+    - [为什么 pthread 条件变量(condition variable)函数要用到 mutex ](https://feng-qi.github.io/2017/05/08/Why-do-pthreads-condition-variable-functions-require-a-mutex/)
+    - [pthread 读写锁](https://www.cnblogs.com/sinkinben/p/14272921.html)
+    - [Linux系统编程-(pthread)线程通信(自旋锁)](https://cloud.tencent.com/developer/article/1944273)
+    - [pthread使用barrier栅栏方式同步](https://langzi989.github.io/2018/07/05/pthread%E4%BD%BF%E7%94%A8barrier%E6%A0%85%E6%A0%8F%E6%96%B9%E5%BC%8F%E5%90%8C%E6%AD%A5/)
+    
+- semaphore库
+    - [被"抛弃"的同步模型 - 信号量Semaphores](https://dengzuoheng.github.io/cpp-concurency-pattern-3-semaphore)
+
+- 跨进程通信
