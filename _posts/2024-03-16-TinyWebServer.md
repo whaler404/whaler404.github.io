@@ -92,3 +92,9 @@ tags:
     - [被"抛弃"的同步模型 - 信号量Semaphores](https://dengzuoheng.github.io/cpp-concurency-pattern-3-semaphore)
 
 - 跨进程通信
+    - [Linux C 中的 fork()、vfork()、exec*()、system() 等进程函数](https://learnku.com/articles/69324)
+    - [C/C++ 进程间通信 管道](https://www.cnblogs.com/dk666/p/7412527.html)
+    - [Signal Handling in C++](https://www.geeksforgeeks.org/signal-handling-in-cpp/)
+    - [IPC using Message Queues](https://www.geeksforgeeks.org/ipc-using-message-queues/)
+    - [IPC through shared memory](https://www.geeksforgeeks.org/ipc-shared-memory/)
+
