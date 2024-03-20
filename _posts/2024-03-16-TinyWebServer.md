@@ -78,6 +78,7 @@ tags:
 - [c++经验之谈一：RAII原理介绍](https://zhuanlan.zhihu.com/p/34660259)
 - [Linux下的I/O复用与epoll详解](https://www.cnblogs.com/lojunren/p/3856290.html)
 - [回调函数（callback）是什么](https://www.zhihu.com/question/19801131)
+- [c++标准](https://docs.oldtimes.me/c.biancheng.net/cplus/index.html)
 
 - pthread库
     - [POSIX thread (pthread) libraries (CMU)](https://www.cs.cmu.edu/afs/cs/academic/class/15492-f07/www/pthreads.html)
@@ -98,3 +99,12 @@ tags:
     - [IPC using Message Queues](https://www.geeksforgeeks.org/ipc-using-message-queues/)
     - [IPC through shared memory](https://www.geeksforgeeks.org/ipc-shared-memory/)
 
+- IO
+    - [fcntl函数的用法总结](https://www.cnblogs.com/zxc2man/p/7649240.html)
+    - [《UNIXLinux程序设计教程》一3.6　文件控制函数fcntl()](https://developer.aliyun.com/article/175396)
+    - [c++标准文件操作](https://docs.oldtimes.me/c.biancheng.net/cplus/60/index.html)
+
+- IO多路复用
+    - [Select、Poll、Epoll简单入门](https://zhuanlan.zhihu.com/p/373835207)
+    - [Epoll的理解](https://blog.csdn.net/weixin_43326322/article/details/108276554)
+    - [句柄是什么？](https://www.zhihu.com/question/27656256)
