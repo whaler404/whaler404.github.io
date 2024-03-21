@@ -79,6 +79,7 @@ tags:
 - [Linux下的I/O复用与epoll详解](https://www.cnblogs.com/lojunren/p/3856290.html)
 - [回调函数（callback）是什么](https://www.zhihu.com/question/19801131)
 - [c++标准](https://docs.oldtimes.me/c.biancheng.net/cplus/index.html)
+- [如何在 Linux 系统中结束进程或是中止程序](https://zhuanlan.zhihu.com/p/37702619)
 
 - pthread库
     - [POSIX thread (pthread) libraries (CMU)](https://www.cs.cmu.edu/afs/cs/academic/class/15492-f07/www/pthreads.html)
@@ -108,3 +109,6 @@ tags:
     - [Select、Poll、Epoll简单入门](https://zhuanlan.zhihu.com/p/373835207)
     - [Epoll的理解](https://blog.csdn.net/weixin_43326322/article/details/108276554)
     - [句柄是什么？](https://www.zhihu.com/question/27656256)
+
+- HTTP
+    - [HTTP请求报文和HTTP响应报文](https://www.cnblogs.com/biyeymyhjob/archive/2012/07/28/2612910.html)
