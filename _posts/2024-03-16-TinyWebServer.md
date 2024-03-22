@@ -74,7 +74,9 @@ tags:
 - 进程通信编程
 # 相关博客
 
+- [TinyWebServer讲解——两猿社](https://2yuan.club/categories/TinyWebServer/)
 - [TinyWebServer——从0到服务器开发！](https://zhuanlan.zhihu.com/p/364044293)
+- [Linux高性能服务器编程-pdf](https://dark-wind.github.io/books/Linux%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%96%E7%A8%8B.pdf)
 - [c++经验之谈一：RAII原理介绍](https://zhuanlan.zhihu.com/p/34660259)
 - [Linux下的I/O复用与epoll详解](https://www.cnblogs.com/lojunren/p/3856290.html)
 - [回调函数（callback）是什么](https://www.zhihu.com/question/19801131)
@@ -97,6 +99,7 @@ tags:
     - [Linux C 中的 fork()、vfork()、exec*()、system() 等进程函数](https://learnku.com/articles/69324)
     - [C/C++ 进程间通信 管道](https://www.cnblogs.com/dk666/p/7412527.html)
     - [Signal Handling in C++](https://www.geeksforgeeks.org/signal-handling-in-cpp/)
+    - [一文看懂 Linux 信号处理原理与实现](https://www.51cto.com/article/675743.html)
     - [IPC using Message Queues](https://www.geeksforgeeks.org/ipc-using-message-queues/)
     - [IPC through shared memory](https://www.geeksforgeeks.org/ipc-shared-memory/)
 
