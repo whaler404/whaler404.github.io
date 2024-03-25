@@ -80,6 +80,7 @@ tags:
 - [c++经验之谈一：RAII原理介绍](https://zhuanlan.zhihu.com/p/34660259)
 - [Linux下的I/O复用与epoll详解](https://www.cnblogs.com/lojunren/p/3856290.html)
 - [回调函数（callback）是什么](https://www.zhihu.com/question/19801131)
+- [posix是什么都不知道，还好意思说你懂Linux？](https://zhuanlan.zhihu.com/p/392588996)
 - [c++标准](https://docs.oldtimes.me/c.biancheng.net/cplus/index.html)
 - [如何在 Linux 系统中结束进程或是中止程序](https://zhuanlan.zhihu.com/p/37702619)
 
