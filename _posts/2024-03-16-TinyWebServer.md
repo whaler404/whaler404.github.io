@@ -110,6 +110,7 @@ tags:
     - [c++标准文件操作](https://docs.oldtimes.me/c.biancheng.net/cplus/60/index.html)
 
 - IO多路复用
+    - [彻底理解 IO 多路复用实现机制](https://juejin.cn/post/6882984260672847879)
     - [Select、Poll、Epoll简单入门](https://zhuanlan.zhihu.com/p/373835207)
     - [Epoll的理解](https://blog.csdn.net/weixin_43326322/article/details/108276554)
     - [句柄是什么？](https://www.zhihu.com/question/27656256)
