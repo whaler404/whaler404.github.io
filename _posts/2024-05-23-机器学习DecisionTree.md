@@ -54,7 +54,7 @@ tags:
 假定**当前样本集合D**的第k类样本所占的比例 $p_k$ ，则D的**信息熵定义**为
 
 $$
-Ent(D)=-\sum\limits_{i=1}^{\vert y\vert}p_k\log_2{(p_k)}
+Ent(D)=-\sum\limits_{k=1}^{\vert y\vert}p_k\log_2{(p_k)}
 $$
 
 信息熵越小，数据集D的纯度越高
@@ -83,7 +83,7 @@ $$
 增益率：
 
 $$
-Gain_ratio(D,a)=\frac{Gain(D,a)}{Ⅳ(a)}
+Gain_{ratio}(D,a)=\frac{Gain(D,a)}{Ⅳ(a)}
 $$
 
 其中
