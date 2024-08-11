@@ -11,45 +11,7 @@ tags:
     - course
 ---
 
-# 背景+基本概念
-
-# 编译环境介绍+基本语法
-
-# 编程规范+初始化
-
-javac
-
-- 编译器，将.java源码编译成字节码.class文件
-- `javac [选项]* xx.java`
-- `-classpath classpath`定义javac搜索类的路径
-- `-d directory`指明编译生成的类存放的根目录
-
-java：解释器，解释运行java字节码
-
-jar
-
-- 存档压缩工具，java应用程序，将多个文件合并为单个jar归档文件
-- `jar [选项] [mainfest] destination input-file [input-files]`
-- `jar cf file.jar *.class`将当前目录下的所有.class文件打包称file.jar
-- `jar tf file.jar`显示jar文件中的文件列表
-
-jarap：类文件解析器，解析类文件，输出public域及其方法，快速查看类的可用属性和方法
-
-javadoc：Java API文档生成器，解释Java源文件中类的定义和文档注释，生成响应的文档
-
-appletviwer：Java applet浏览器（viewer），web调试运行
-
-jdb：调试器
-
-javah：生成c头文件和源文件
-
-环境配置：配置Path和ClassPath
-
-命名规范：包`顶级域名.包名.子功能包名`，类（首字母大写），放啊（首单词小写，动词），变量（首单词小写）
-
-
-
-# Android简介+初始化与清理+访问权限控制
+# 访问权限控制
 
 ## 初始化
 
@@ -180,12 +142,8 @@ this关键字：不能串行调用两个构造器
     	void testSingleton(){Soup2.access().f();}
     }
     ```
-  
-    
 
-# 编程思想+复用+多态+eclipse编译环境
-
-## 继承
+# 继承
 
 ## 关键字
 
@@ -943,398 +901,6 @@ public class test{
       均实现了Cloneable接口
     - WeakHashMap
 
-# 类型信息
-
-## RTTI
-
-RTTI-runtime type information运行时类型信息
-
-**运行时识别一个对象的类型：**当一个指向对象基类的引用时，**RTTI机制**可以找到对象的**确切类型**
-
-- 两种方法
-
-  - 传统RTTI，假定编译时已经知道了所有的类型
-  - “反射”机制，允许运行时发现和使用类的信息
-
-- RTTI的优点
-
-  - 向上转型，丢失具体的类型信息，但总是安全的
-  - 向下转型，必须检查
-
-- 三种形式
-
-  - 传统类型转换：`(Apple)Fruit`，如果转换类型错误，抛出`ClassCastException`异常
-
-  - 通过Class对象获取对象的类型
-
-    ```java
-    Class c=Class.forName("Apple");
-    Object o=c.newInstance();
-    ```
-
-    `关键字instanceof、方法Class.isInstance()`确定对象是否属于特定类或其基类
-
-    - 每个类都有Class对象，当编写并编译了一个新类就会产生一个Class对象，被保存在同名.class文件中
-    
-    - 当类的class对象载入到内存，就被用来创建这个类的所有对象
-    
-    - Java程序运行前不是全部被加载，在各部分必须的时候才加载
-    
-    - 三种获得Class对象的引用方法
-      - `Class.forName("xx.class")`
-        - 参数：目标类的文本名
-        - 目的：返回目标类的引用并操作它
-      - 类字面量`Gum.class`
-        - 更简单更安全，应用于类、接口、数组、基本类型
-        - 对于基本类型的包装类，还有标准字段TYPE，指向基本类型的class引用
-      - `obj.getClass()`获得Class引用（已知某个对象）
-      
-      ```java
-      class Candy{static{System.out.println("loading candy")};}
-      class Gum{static{System.out.println("loading gum")};}
-      class Cookie{static{System.out.println("loading cookie")};}
-      public class SweetShop{
-          public static void main(String[]args){
-              new Candy();
-              try{
-                  Class.forName("Gum");
-              }catch(ClassNotFoundException e){
-                  System.out.println("not found")
-              }
-              new Cookie();
-          }
-      }
-      ```
-      
-      ```java
-      //: typeinfo/toys/ToyTest.java
-      pacakge typeinfo.toys;
-      import static net.mindview.util.Print.*;
-      interface HasBatteries{}
-      interface Waterproof{}
-      interface Shoots{}
-      class Toy{Toy(int i){}}
-      Class FancyToy extends Toy implements HasBatteries,Waterproff,Shoots{
-      	FancyToy(int i){super(i);}
-      }
-      public class ToyTest{
-      	static void printInfo(Class cc){
-      		print("class name: "+cc.getName());
-      		print("is interface?: "+cc.isInterface());
-      		print("simple name: "+cc.getSimpleName());
-      		print("canonical name: "+cc.getCanonicalName());
-      	}
-      	public static void main(String[]args){
-      		Class c=null;
-      		try{
-      			c=Class.forName("typeinfo.toys.FancyToy");
-      		}catch(ClassNotFoundException e){
-      			print("not found FancyToy");
-      		}
-      		printInfo(c);
-              //FancyToy False FancyToy typeinfo.toys.FancyToy
-      		for(Class face:c.getInterfaces()){
-      			printInfo(face);
-                  //typeinfo.toys.HasBatteries true HasBatteries 
-                  //typeinfo.toys.HasBatteries
-      		}
-      		class up=c.getSuperclass();
-      		Object obj=null;
-      		try{
-      			obj=up.newInstance();
-      		}catch(InstantiationException e){
-      			print("cannot instantiate");
-      		}catch(IllegalAccessException e){
-      			print("cannot access");
-      		}
-      		printInfo(obj.getClass);
-              //typeinfo.toys.Toy false Toy typeinfo.toys.Toy
-      	}
-      }
-      ```
-    
-  - Class对象：**可以查出它的祖宗十八代**
-  
-    `getInterfaces(): Class[]、newInstance(): Object`
-    `static Class.forName("Gum"): Class`
-    `isInterface(): bool、getName(): string、getSuperclass()`
-  
-- 类字面常量
-
-  - 类字面常量不仅可以用于普通的类，也可以用应用于接口、数组、基本数据类型
-
-  - 对于基本数据类型的包装器类，该有一个标准字段TYPE
-    `boolean.class==Boolean.TYPE、char.class==Character.TYPE`
-
-  - TPYE字段可以是一个引用，指向对应的基本数据类型Class对象
-
-  - 语法：`类名.class`
-
-  - 过程：
-
-    - 加载：类加载器执行，查找字节码（通过classpath在指定的路径查找），**从字节码中创建Class对象**
-    - 链接：验证类中的字节码，为静态域**分配存储空间**，可能会解释这个类创建的对其他类的所有引用
-    - 初始化：先初始化超类，执行静态初始化器、静态初始化模块
-
-    ```java
-    //: typeinfo/ClassInitialization.java
-    import java.util.*;
-    class Initable{
-        //有static+final的编译常量，不需要初始化类
-    	static final int staticFinal=47;
-        //有static+final的非编译常量，需要初始化类
-    	static final int staticFianl2=
-    	ClassInitializaition.rand.nextInt(1000);
-    	static{System.out.println("initializaiton initable");}
-    }
-    class Initable2{
-        //只有static，先链接和初始化
-    	static int staticNonFinal=147;
-    	static{System.out.println("initialization initable2");}
-    }
-    class Initable3{
-    	static int staticNonFinal=74;
-    	static{System.out.println("initialization initable3");}
-    }
-    public class ClassInitialization{
-    	public static Random rand=new Random(47);
-    	public static void main(String[]args) throws Exception{
-            Class initable=Initable.class;//不用初始化类
-    		System.out.println(Initable.staticFianl);//47
-    		System.out.println(Initable.staticFinal2);//initializing initable 258
-    		System.out.println(initable2.staticNonFinal);//initializing initable2 147
-    		Class initable3=Class.forName("Initable3");//要初始化类 initializing initable3
-    		System.out.println(Initable3.staticNonFinal);//74
-    	}
-    }
-    ```
-
-  - `x instanceof Dog`：判断对象是不是某些类的实例，返回一个布尔值
-    注意：Dog是一个命名类型，而不是Class对象
-
-    动态的instanceof——isInstance
-
-    - 语法：`类.isInstance(对象)`，动态测试对象的路径
-
-      - `导出类.isInstance(基类对象)`：基类对象是否导出类的对象，`基类对象 instanceof 导出类`
-      - `基类.isInstance(导出类对象)`：导出类对象是否基类的对象，`导出类对象 instanceof 基类`
-
-      ```java
-      //: generics/ClassTypeCapture.java
-      package generics; /* Added by Eclipse.py */
-      
-      class Building {}
-      class House extends Building {}
-      
-      public class ClassTypeCapture<T> {
-        Class<T> kind;
-        public ClassTypeCapture(Class<T> kind) {
-          this.kind = kind;
-        }
-        public boolean f(Object arg) {
-          return kind.isInstance(arg);
-        }
-        public static void main(String[] args) {
-          ClassTypeCapture<Building> ctt1 =
-            new ClassTypeCapture<Building>(Building.class);
-          System.out.println(ctt1.f(new Building()));//true
-          System.out.println(ctt1.f(new House()));//ture
-          ClassTypeCapture<House> ctt2 =
-            new ClassTypeCapture<House>(House.class);
-          System.out.println(ctt2.f(new Building()));//false
-          System.out.println(ctt2.f(new House()));//true
-        }
-      
-      ```
-
-
-## 反射
-
-Java被视为动态（准动态）语言的关键性质
-
-- 动态语言：程序运行时，允许改变程序的结构或变量类型，比如Perl、python、ruby
-- 程序运行后才知道要调用哪个对象，根据客户端的String参数判断执行的方法
-
-- 在运行时加载、探知、使用编译期间完全未知的classes
-
-反射的方式
-
-- 类的**Class对象**
-- 传统的RTTI方式：在编译时打开和检查.class文件
-- 反射机制：在运行时打开和检查.class文件
-
-反射
-
-- java.lang.Class：类对象，对构造器、属性、方法提供了四种独立的反射调用，以不同的方式来获得信息
-- java.lang.reflect：
-  - Constructor：类的构造器对象
-    - `Constructor getConstructor(Class[] params) `获得使用特殊的参数类型的公共构造函数。
-    - `Constructor[] getConstructors() `获得类的所有公共构造函数。
-    - `Constructor getDeclaredConstructor(Class[] params) `获得使用特定参数类型的构造函数(与接入级别无关)
-    - `Constructor[] getDeclaredConstructors()`获得类的所有构造函数(与接入级别无关)
-  - Field：类的属性对象
-    - `Field getField(**String name**)`获得命名的公共字段
-    - `Field[] getFields()`获得类的所有公共字段
-    - `Field getDeclaredField(**String name**)`获得类声明的命名的字段
-    - `Field[] getDeclaredFields()`获得类声明的所有字段
-  - Method：类的方法对象
-    - `Method getMethod(String name, Class[] params) `使用特定的参数类型，获得命名的公共方法
-    - `Method[] getMethods()`获得类的所有公共方法
-    - `Method getDeclaredMethod(String name, Class[] params)`使用特写的参数类型，获得类声明的命名的方法
-    - `Method[] getDeclaredMethods()`获得类声明的所有方法
-
-使用反射的原则
-
-- 获得操作的类的java.lang.Class对象
-
-  ```java
-  Class c=Class.forName("java.lang.Class");
-  Class c=init.getClass();
-  Class c=Integer.TYPE;
-  ```
-
-- 调用诸如`getDeclaredMethods`的方法，获得类中定义所有方法的列表
-
-  ```java
-  Method m[]=c.getDeclaredMethods();
-  ```
-
-- 使用reflection API操作这些信息
-
-  ```java
-  System.out.println(m[0].toString());
-  ```
-
-```java
-import java.lang.reflect.*;
-import java.awt.*;
-class SampleGet {
-	public static void main(String[] args) {
-		Rectangle r = new Rectangle(100, 325);
-		printHeight(r);
-	}
-	static void printHeight(Rectangle r) {
-        Field heightField;
-        Integer heightValue;
-        Class c = r.getClass();//创建一个class对象
-        try {
-            heightField = c.getField("height");//通过getField创建一个Field对象
-            heightValue = (Integer) heightField.get(r);
-            System.out.println("Height: " + heightValue.toString());
-        } catch (NoSuchFieldException e) {
-            System.out.println(e);
-        } catch (SecurityException e) {
-            System.out.println(e);
-        } catch (IllegalAccessException e) {
-        	System.out.println(e);
-        }
-	}
-}
-```
-
-反射的功能：运行时
-
-- 判断对象属于的类
-- 构造任意一个类的对象
-- 判断任意一个类具有的成员变量和方法
-- 调用任意一个对象的方法
-
-```java
-//得到某个对象的属性
-public Object getProperty(Object owner, String fieldName) throws exception
-{
-	Class ownerClass = owner.getClass();
-	Field field = ownerClass.getField(fieldName); 
-	Object property = field.get(owner);
-	return property;
-}
-//得到某个类的静态属性
-public Object getStaticProperty(String className, String fieldName) throws Exception
-{
-	Class ownerClass = Class.forName(className);
-	Field field = ownerClass.getField(fieldName);  
-	Object property = field.get(ownerClass);
-	return property;
-}
-//执行某对象的方法
-public Object invokeMethod(Object owner, String methodName, Object[] args) throws Exception 
-{
-	Class ownerClass = owner.getClass();
-	Class[] argsClass = new Class[args.length];
-	for (int i = 0, j = args.length; i < j; i++) {   
-		argsClass[i] = args[i].getClass();
-	}
-	Method method = ownerClass.getMethod(methodName, argsClass);
-	return method.invoke(owner, args);
-}
-//执行某个类的静态方法
-public Object invokeStaticMethod(String className, String methodName,Object[] args) throws Exception
-{
-	Class ownerClass = Class.forName(className);
-	Class[] argsClass = new Class[args.length];
-	for (int i = 0, j = args.length; i < j; i++) {  
-		argsClass[i] = args[i].getClass();
-	}
-	Method method = ownerClass.getMethod(methodName, argsClass); 
-	return method.invoke(null, args);
-}
-//新建实例
-public Object newInstance(String className, Object[] args) throws Exception
-{
-    Class newoneClass = Class.forName(className);
-    Class[] argsClass = new Class[args.length];
-    for (int i = 0, j = args.length; i < j; i++) {
-        argsClass[i] = args[i].getClass();
-	}  
-	Constructor cons = newoneClass.getConstructor(argsClass);
-	return cons.newInstance(args);
-}
-//判断是否为某个类的实例
-public boolean isInstance(Object obj, Class cls) {
-	return cls.isInstance(obj); }
-//得到数组钟的某个元素
-public Object getByArray(Object array, int index) {
-    return Array.get(array,index); }
-
-```
-
-反射与安全性：对反射实施应用与源代码接入相同的限制
-
-- 从任意位置导类公共组件的接入
-- 类自身外部无任何到私有组件的接入
-- 受保护和打包（缺省接入）组件的有限接入
-
-反射与性能：反射是一种解释操作，告诉JVM我们希望做什么，总是更慢
-
-null：伴随着空指针异常
-
-空对象：可以假设所有对象是有效的，避免检查null异常
-
-## 接口和类型信息
-
-接口：允许隔离构建，降低耦合性
-
-```java
-//: typeinfo/InterfaceViolation.java 
-// Sneaking around an interface. 
-import typeinfo.interfacea.*; 
-class B implements A { 
-    public void f() {} 
-    public void g() {} 
-} 
-public class InterfaceViolation { 
-    public static void main(String[] args) { 
-        A a = new B(); 
-        a.f(); 
-        // a.g(); // 编译错误
-        System.out.println(a.getClass().getName()); 
-        if(a instanceof B) { // true
-            B b = (B)a; 
-            b.g(); 
-        } 
-    } 
-} /* Output: 
-```
 
 # 自动拆箱+泛型
 
@@ -1407,7 +973,7 @@ public class test{
           i2.setVar(30.1f) // 设置小数，自动装箱
           fun(i2);
       }
-      public static void fun(info<? extends Number>temp){
+      public static void fun(Info<? extends Number>temp){
           System.out.println(temp); // 只能接收Number及其子类
       }
   }
@@ -1427,7 +993,7 @@ public class test{
           i2.setVar(new Object()`) // 设置小数，自动装箱
           fun(i2);
       }
-      public static void fun(info<? super String>temp){
+      public static void fun(Info<? super String>temp){
           System.out.println(temp); // 只能接收String或Object类型的泛型
           //只能接收类和超类
       }
@@ -1452,10 +1018,10 @@ public class test{
 - Java泛型接口：使用泛型接口还是实类型接口
 
   ```java
-  interface Info< T>{  // 在接口上定义泛型
+  interface Info<T>{  // 在接口上定义泛型
       public T getVar() ; // 定义抽象方法，抽象方法的返回值就是泛型类型
   }  
-  class InfoImpl< T> implements Info< T>{ // 定义泛型接口的子类   
+  class InfoImpl<T> implements Info<T>{ // 定义泛型接口的子类   
       private T var ;    // 定义属性   
       public InfoImpl(T var){  // 通过构造方法设置属性内容    
           this.setVar(var) ;    }
@@ -1487,8 +1053,8 @@ public class test{
            Info i = null;  // 声明接口对象，接口可以不用类型参数
            i = new InfoImpl ("汤姆") ; // 通过子类实例化对象
            System.out.println("内容：" + i.getVar()) ;
-      }  }; 
-  }
+      } 
+  };
   ```
 
 - Java泛型方法
@@ -1559,7 +1125,7 @@ public class test{
 - Java泛型的嵌套设置：比如`<List<String>>`
 
   ```java
-  class Info< T,V>{  // 接收两个泛型类型
+  class Info<T,V>{  // 接收两个泛型类型
       private T var ;
       private V value ;
       public Info(T var,V value){

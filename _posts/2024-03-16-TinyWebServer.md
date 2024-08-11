@@ -117,3 +117,6 @@ tags:
 
 - HTTP
     - [HTTP请求报文和HTTP响应报文](https://www.cnblogs.com/biyeymyhjob/archive/2012/07/28/2612910.html)
+
+- C 基础
+    - [【C语言】free函数如何知道要释放多大空间](https://blog.csdn.net/qq_41884002/article/details/121627852)
